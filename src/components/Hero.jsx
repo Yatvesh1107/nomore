@@ -27,23 +27,7 @@ function Hero() {
 
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-black/70" />
 
-            <nav className="relative z-20 flex h-24 items-center justify-between px-6 md:px-12">
-                <h2 className="text-2xl font-bold">Nomore ©</h2>
-
-                <div className="hidden gap-10 text-sm font-bold md:flex">
-                    <a href="#home">HOME</a>
-                    <a href="#about">ABOUT</a>
-                    <a href="#work">WORK</a>
-                    <a href="#projects">PROJECTS</a>
-                </div>
-
-                <button className="flex items-center gap-3 rounded-full bg-white py-2 pl-5 pr-2 text-sm font-bold text-black">
-                    LET&apos;S TALK
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-black text-white">
-                        ➜
-                    </span>
-                </button>
-            </nav>
+           
 
             <button
                 onClick={toggleVideo}
@@ -55,11 +39,11 @@ function Hero() {
             
 
             <div className="relative  z-10 flex h-[calc(100vh-96px)] flex-col justify-center px-6 md:px-24">
-                <p className="absolute left-6 top-[12%] z-20 text-sm font-bold tracking-wide md:left-24">
+                <p className="absolute left-6 top-[29%] z-20 text-sm font-bold tracking-wide md:left-24">
                     POWERED BY CREATIVITY
                 </p>
 
-                <div className="absolute bottom-[25%] left-[50%] -translate-x-1/2 w-full flex justify-center">
+                <div className="absolute bottom-[10%] left-[50%] -translate-x-1/2 w-full flex justify-center">
                     <img
                         src={textImage}
                         alt="Creative Studio"
@@ -69,7 +53,7 @@ function Hero() {
 
                 
 
-                <p className="mt-10 max-w-sm text-left text-base font-bold leading-tight md:absolute md:bottom-16 md:right-20 md:text-center md:text-lg">
+                <p className="mt-10 max-w-sm text-left text-base font-bold leading-tight md:absolute md:-bottom-15 md:right-20 md:text-center md:text-lg">
                     We transform ideas into fully-realized design experiences — from UI/UX
                     and illustration to development — creating work that elevates brands.
                 </p>
