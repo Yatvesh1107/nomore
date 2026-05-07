@@ -68,7 +68,7 @@ function Services() {
         {services.map((service, index) => (
           <div
             key={index}
-            className="service-card sticky top-[80px] mb-10 flex min-h-[420px] items-center justify-between rounded-[40px] bg-[#ececec] px-10 py-12"
+            className="service-card sticky top-[80px] mb-10 flex min-h-[300px] items-center justify-between rounded-[40px] bg-[#ececec] px-10 py-12"
             style={{
               zIndex: services.length - index,
             }}

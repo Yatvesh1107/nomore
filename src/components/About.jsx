@@ -46,7 +46,7 @@ function About() {
         ref={imageRef}
         src={chrome}
         alt=""
-        className="absolute left-3/5 top-[100%] z-20 w-[280px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-700 ease-out md:w-[500px]"
+        className="absolute left-3/5 md:left-41px top-[100%] z-20 w-[280px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-700 ease-out md:w-[500px]"
       />
 
       <p className="relative z-30 mt-44 max-w-5xl text-lg font-bold leading-snug text-white/90 md:mt-56 md:text-2xl">

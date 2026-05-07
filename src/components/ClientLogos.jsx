@@ -1,8 +1,8 @@
-import logo from "../assets/images/logo .svg";
-import logo1 from "../assets/images/logo-1.svg";
-import logo2 from "../assets/images/logo-2.svg";
-import logo3 from "../assets/images/logo-3.svg";
-import logo5 from "../assets/images/logo-5.svg";
+import logo from "../assets/logos/logo-4.svg";
+import logo1 from "../assets/logos/logo-1.svg";
+import logo2 from "../assets/logos/logo-2.svg";
+import logo3 from "../assets/logos/logo-3.svg";
+import logo5 from "../assets/logos/logo-5.svg";
 
 function ClientLogos() {
   const logos = [logo, logo1, logo2, logo3, logo5];

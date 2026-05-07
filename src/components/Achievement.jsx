@@ -9,58 +9,69 @@ gsap.registerPlugin(ScrollTrigger);
 function Achievement() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".achievement-title", {
-        y: 180,
+ useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.to(".floating-text", {
+      yPercent: -25,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.5,
+      },
+    });
+
+    gsap.from(".achievement-title", {
+      y: 180,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+      },
+    });
+
+    gsap.from(".impact-title", {
+      x: 250,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".impact-title",
+        start: "top 85%",
+      },
+    });
+
+    gsap.utils.toArray(".stats-box").forEach((box, i) => {
+      gsap.from(box, {
+        y: 140,
         opacity: 0,
-        duration: 1.4,
-        ease: "power4.out",
+        duration: 1.2,
+        delay: i * 0.1,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
+          trigger: box,
+          start: "top 90%",
         },
       });
+    });
 
-      gsap.from(".impact-title", {
-        x: 250,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".impact-title",
-          start: "top 85%",
-        },
-      });
+    gsap.to(".achievement-image", {
+      scale: 1.15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }, sectionRef);
 
-      gsap.utils.toArray(".stats-box").forEach((box, i) => {
-        gsap.from(box, {
-          y: 140,
-          opacity: 0,
-          duration: 1.2,
-          delay: i * 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: box,
-            start: "top 90%",
-          },
-        });
-      });
-
-      gsap.to(".achievement-image", {
-        scale: 1.15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  return () => ctx.revert();
+}, []);
 
   return (
     <section
@@ -87,7 +98,7 @@ function Achievement() {
         </div>
 
         {/* MAIN TITLE */}
-        <div className="achievement-title">
+        <div className="achievement-title floating-text">
           <h2 className="text-[9vw] font-black uppercase leading-[0.82] tracking-[-0.07em]">
             BEYOND INFLUENCE
           </h2>
@@ -100,7 +111,7 @@ function Achievement() {
         </div>
 
         {/* SECOND TITLE */}
-        <div className="impact-title mt-40">
+        <div className="impact-title floating-text mt-40">
           <h3 className="text-right text-[8vw] font-black uppercase leading-[0.82] tracking-[-0.07em]">
             AND IMPACT
           </h3>
@@ -114,7 +125,7 @@ function Achievement() {
 
         {/* STATS */}
         <div className="mt-52 grid gap-32 md:grid-cols-3">
-          <div className="stats-box">
+          <div className="stats-box floating-text ">
             <h4 className="text-[7vw] font-black leading-none">200+</h4>
 
             <p className="mt-8 max-w-xs text-[1.35rem] font-semibold leading-tight">
