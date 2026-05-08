@@ -63,71 +63,70 @@ function Contact() {
         <div className="absolute inset-0 bg-black/30" />
 
         {/* CONTENT */}
-        <div className="relative z-10 grid min-h-screen grid-cols-1 border-b border-white/10 px-8 pb-14 pt-36 md:grid-cols-[0.78fr_1.22fr] md:px-10">
+       <div className="relative z-10 grid min-h-screen grid-cols-1 px-8 pb-14 pt-36 md:grid-cols-[0.78fr_1.22fr] md:px-10">
+   {/* LEFT SIDE */}
+<div className="flex flex-col">
 
-          {/* LEFT SIDE */}
-          <div className="flex flex-col justify-between">
+  {/* TITLE */}
+  <div className="overflow-hidden">
 
-            {/* TITLE */}
-            <div className="overflow-hidden">
+    <h1
+      ref={titleRef}
+      className="translate-y-[100%] text-[16vw] font-black uppercase leading-[0.82] tracking-[-0.09em] will-change-transform md:text-[120px]"
+    >
+      CONTACT
+    </h1>
 
-              <h1
-                ref={titleRef}
-                className="translate-y-[100%] text-[16vw] font-black uppercase leading-[0.82] tracking-[-0.09em] will-change-transform md:text-[10vw]"
-              >
-                CONTACT
-              </h1>
+  </div>
 
-            </div>
+  {/* CONTACT INFO */}
+  <div
+    ref={leftRef}
+    className="mt-10 space-y-10"
+  >
 
-            {/* CONTACT INFO */}
-            <div
-              ref={leftRef}
-              className="mb-10 space-y-10"
-            >
+    {/* PHONE */}
+    <div>
 
-              {/* PHONE */}
-              <div>
+      <p className="text-[20px] font-semibold text-white/45">
+        Call Today :
+      </p>
 
-                <p className="text-[20px] font-semibold text-white/45">
-                  Call Today :
-                </p>
+      <p className="mt-2 text-[22px] font-semibold tracking-[-0.02em]">
+        +62 523 735 1221
+      </p>
 
-                <p className="mt-2 text-[22px] font-semibold tracking-[-0.02em]">
-                  +62 523 735 1221
-                </p>
+    </div>
 
-              </div>
+    {/* EMAIL */}
+    <div>
 
-              {/* EMAIL */}
-              <div>
+      <p className="text-[20px] font-semibold text-white/45">
+        Email :
+      </p>
 
-                <p className="text-[20px] font-semibold text-white/45">
-                  Email :
-                </p>
+      <p className="mt-2 text-[22px] font-semibold tracking-[-0.02em]">
+        hello.nomore@gmail.com
+      </p>
 
-                <p className="mt-2 text-[22px] font-semibold tracking-[-0.02em]">
-                  hello.nomore@gmail.com
-                </p>
+    </div>
 
-              </div>
+    {/* ADMIN */}
+    <div>
 
-              {/* ADMIN */}
-              <div>
+      <p className="text-[20px] font-semibold text-white/45">
+        Admin :
+      </p>
 
-                <p className="text-[20px] font-semibold text-white/45">
-                  Admin :
-                </p>
+      <p className="mt-2 text-[22px] font-semibold tracking-[-0.02em]">
+        support-nomore@gmail.com
+      </p>
 
-                <p className="mt-2 text-[22px] font-semibold tracking-[-0.02em]">
-                  support-nomore@gmail.com
-                </p>
+    </div>
 
-              </div>
+  </div>
 
-            </div>
-
-          </div>
+</div>
 
           {/* RIGHT SIDE */}
           <div
@@ -135,7 +134,7 @@ function Contact() {
             className="flex justify-end pt-8 md:pt-10"
           >
 
-            <form className="w-full max-w-[720px] space-y-10">
+            <form className="w-full max-w-[580px] space-y-10">
 
               {/* NAME */}
               <div>
@@ -173,7 +172,7 @@ function Contact() {
                 </label>
 
                 <textarea
-                  rows="8"
+                  rows="6"
                   className="mt-8 w-full resize-none border-b border-white/25 bg-transparent text-[18px] outline-none"
                 />
 
@@ -240,7 +239,7 @@ function Contact() {
               {/* BUTTON */}
               <button
                 type="submit"
-                className="mt-8 h-[76px] w-full rounded-full bg-white text-[18px] font-semibold uppercase tracking-wide text-black transition-all duration-300 hover:scale-[1.01]"
+                className="mt-8 h-[50px] w-full rounded-full bg-white text-[15px] font-semibold uppercase tracking-wide text-black transition-all duration-300 hover:scale-[1.01]"
               >
                 Submit
               </button>
@@ -254,8 +253,9 @@ function Contact() {
       </section>
 
       {/* TESTIMONIAL */}
-      <AboutTestimonial />
-
+     <div className="relative z-20 -mt-24">
+  <AboutTestimonial />
+</div>
       {/* FOOTER */}
       <Footer />
     </>
