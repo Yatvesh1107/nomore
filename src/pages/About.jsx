@@ -1,12 +1,15 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+
 import Navbar from "../components/Navbar";
+import AboutCarousel from "../components/AboutCarousel";
+import Journey from "../components/Journey";
+import Footer from "../components/Footer";
 
 const AboutUs = () => {
   const titleRef = useRef(null);
   const textRef = useRef(null);
-  const imageRef = useRef(null);
 
   useGSAP(() => {
     gsap.from(titleRef.current, {
@@ -23,60 +26,60 @@ const AboutUs = () => {
       delay: 0.3,
       ease: "power3.out",
     });
-
-    gsap.from(imageRef.current, {
-      scale: 1.2,
-      opacity: 0,
-      duration: 1.5,
-      delay: 0.4,
-      ease: "power3.out",
-    });
   });
 
   return (
     <>
+      <Navbar />
 
-    <Navbar />
-
+      {/* HERO SECTION */}
       <section className="relative h-screen overflow-hidden bg-black text-white">
 
-        {/* Background Video */}
+        {/* BACKGROUND VIDEO */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full scale-[0.94] object-cover object-center"
         >
           <source src="/videos/about-hero.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark Overlay */}
+        {/* OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70" />
 
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-between px-6 pb-10 pt-44 md:px-12">
+        {/* CONTENT */}
+        <div className="relative z-10 flex h-full flex-col justify-between px-8 pb-10 pt-44 md:px-14">
 
-          {/* Top Right Text */}
-          <div className="flex justify-end">
-            <p className="max-w-xl text-right text-lg font-medium leading-relaxed md:text-[20px]">
+          {/* TOP RIGHT TEXT */}
+          <div className="flex justify-end pt-10">
+
+            <p
+              ref={textRef}
+              className="max-w-[620px] text-right text-[20px] font-medium leading-[1.6]"
+            >
               Discover who we are — a creative studio passionate about
               crafting bold brands, immersive experiences, and innovative
               design expert solutions.
             </p>
+
           </div>
 
-          {/* Bottom Section */}
-          <div className="flex items-end pb-8 justify-between">
+          {/* BOTTOM SECTION */}
+          <div className="flex items-end justify-between pb-4">
 
-            {/* Huge Heading */}
-            <h1 className="text-[15vw] font-[900/uppercase leading-[0.82] tracking-[-0.09em] md:text-[9vw]">
+            {/* HUGE TITLE */}
+            <h1
+              ref={titleRef}
+              className="text-[13vw] font-[900] uppercase leading-[0.82] tracking-[-0.09em] md:text-[8vw]"
+            >
               ABOUT
               <br />
               NOMORE STD
             </h1>
 
-            {/* Scroll Text */}
+            {/* SCROLL TEXT */}
             <p className="mb-1 hidden text-lg md:block">
               (Scroll down)
             </p>
@@ -87,6 +90,12 @@ const AboutUs = () => {
 
       </section>
 
+      {/* IMAGE MARQUEE */}
+      <AboutCarousel />
+
+      <Journey />
+
+      <Footer/>
     </>
   );
 };
