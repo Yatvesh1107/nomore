@@ -52,7 +52,7 @@ function AboutTestimonial() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-black px-8 py-32 text-white md:px-14">
+    <section className="relative -mt-1 px-8 py-28 text-white md:px-14">
 
       {/* TOP CONTENT */}
       <div className="grid grid-cols-[220px_1fr] gap-16">
