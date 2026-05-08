@@ -174,6 +174,7 @@ import service7 from "../assets/images/service-7.png";
 import service8 from "../assets/images/service-8.png";
 import service9 from "../assets/images/service-9.png";
 import Footer from "../components/Footer";
+import AboutTestimonial from "../components/AboutTestimonial";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -465,6 +466,7 @@ const Services = () => {
     </div>
   </div>
 </section>
+<AboutTestimonial/>
 <Footer/>
      
     </main>
