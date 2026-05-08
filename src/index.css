@@ -89,3 +89,24 @@ html {
 body {
   background: black;
 }
+
+/* ABOUT MARQUEE */
+.marquee {
+  width: max-content;
+  animation: marquee 22s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover {
+  /* animation-play-state: paused; */
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
