@@ -54,8 +54,9 @@ const Navbar = () => {
   <Link to="/about">ABOUT</Link>
 
   <Link to="/services">SERVICES</Link>
+  <Link to="/projects">PROJECTS</Link>
 
-  <a href="#projects">PROJECTS</a>
+  
 </div>
 
         <button className="flex items-center gap-3 rounded-full bg-white py-2 pl-5 pr-2 text-sm font-bold text-black">

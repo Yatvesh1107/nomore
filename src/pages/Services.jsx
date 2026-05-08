@@ -154,7 +154,15 @@
 
 
 
+
+
+
+
+
+
 import React, { useState, useRef, useEffect } from "react";
+import { Phone, Rocket } from "lucide-react";
+
 
 import serviceVideo from "../../public/videos/service.mp4";
 
@@ -165,6 +173,7 @@ import service6 from "../assets/images/service-6.png";
 import service7 from "../assets/images/service-7.png";
 import service8 from "../assets/images/service-8.png";
 import service9 from "../assets/images/service-9.png";
+import Footer from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -228,20 +237,25 @@ const Services = () => {
   const slider = sliderRef.current;
   const workflow = workflowRef.current;
 
-  const totalMove = slider.scrollWidth - workflow.offsetWidth;
+  const totalMove = slider.scrollWidth - window.innerWidth + 40;
 
-  gsap.to(slider, {
-    x: -totalMove,
-    ease: "none",
-    scrollTrigger: {
-      trigger: workflow,
-      start: "top top",
-      end: () => `+=${totalMove}`,
-      scrub: 1,
-      pin: true,
-      invalidateOnRefresh: true,
-    },
-  });
+  const ctx = gsap.context(() => {
+    gsap.to(slider, {
+      x: -totalMove,
+      ease: "none",
+      scrollTrigger: {
+        trigger: workflow,
+        start: "top top",
+        end: () => `+=${totalMove}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+  }, workflow);
+
+  return () => ctx.revert();
 }, []);
 
   return (
@@ -331,39 +345,128 @@ const Services = () => {
         )}
       </section>
 
-      <section
-        ref={workflowRef}
-        className="overflow-hidden bg-black py-20"
-      >
-        <div className="mb-10 px-10">
-          <p className="text-xl text-white">OUR WORKFLOW</p>
 
-          <h1 className="text-[8vw] font-black uppercase leading-none text-white">
-            WHAT <span className="text-[#d9fbff]">NEXT</span>
-          </h1>
+<section ref={workflowRef} className="overflow-hidden bg-black py-0">
+  <div className="mb-10 px-10">
+    <p className="text-xl text-white">OUR WORKFLOW</p>
+
+    <h1 className="text-[8vw] font-black uppercase leading-none text-white">
+      WHAT <span className="text-[#d9fbff]">NEXT</span>
+    </h1>
+  </div>
+
+  <div
+    ref={sliderRef}
+    className="flex w-max items-start gap-16 pl-10 pr-[45vw]"
+  >
+    {/* CARD 1 */}
+    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+      <div className="flex items-center gap-2">
+        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+          STEP
+        </span>
+
+        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+          01
+        </span>
+      </div>
+
+      <div className="mt-10 flex items-end justify-between">
+        <div>
+          <h2 className="text-6xl  font-black">Call with Us</h2>
+
+          <p className="mt-4 max-w-[500px] text-[2rem] leading-[1.4]">
+            Let’s discuss your vision, goals, and challenges to understand what
+            success looks like for you.
+          </p>
         </div>
 
-        <div
-          ref={sliderRef}
-          className="flex w-[320vw] gap-10 px-10"
-        >
-          <div className="h-[500px] w-[900px] rounded-[30px] bg-white p-10 text-black">
-            CARD 1
-          </div>
+        {/* <div className="text-[14rem] text-[#dddddd]">☎</div> */}
+        <Phone size={220} strokeWidth={1.2} color="#d9d9d9" />
+      </div>
+    </div>
 
-          <div className="h-[500px] w-[900px] rounded-[30px] bg-white p-10 text-black">
-            CARD 2
-          </div>
+    {/* CARD 2 */}
+    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+      <div className="flex items-center gap-2">
+        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+          STEP
+        </span>
 
-          <div className="h-[500px] w-[900px] rounded-[30px] bg-white p-10 text-black">
-            CARD 3
-          </div>
+        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+          02
+        </span>
+      </div>
 
-          <div className="h-[500px] w-[900px] rounded-[30px] bg-white p-10 text-black">
-            CARD 4
-          </div>
+      <div className="-mt-8 flex items-end justify-between">
+        <div>
+          <h2 className="text-6xl font-black">Strategy & Concept</h2>
+
+          <p className="mt-8 max-w-[520px] text-[2rem] leading-[1.4]">
+            We shape big ideas into bold concepts that align with your goals and
+            audience.
+          </p>
         </div>
-      </section>
+
+        <div className="text-[14rem] text-[#dddddd]">⌲</div>
+      </div>
+    </div>
+
+    {/* CARD 3 */}
+    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+      <div className="flex items-center gap-2">
+        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+          STEP
+        </span>
+
+        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+          03
+        </span>
+      </div>
+
+      <div className="mt-0 flex items-end justify-between">
+        <div>
+          <h2 className="text-6xl font-black">Design & Development</h2>
+
+          <p className="mt-8 max-w-[520px] text-[2rem] leading-[1.4]">
+            Our team transforms ideas into reality through thoughtful design
+            and seamless execution.
+          </p>
+        </div>
+
+        <div className="text-[14rem] text-[#dddddd]">{`{...}`}</div>
+      </div>
+    </div>
+
+    {/* CARD 4 */}
+    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+      <div className="flex items-center gap-2">
+        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+          STEP
+        </span>
+
+        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+          04
+        </span>
+      </div>
+
+      <div className="mt-8 flex items-end justify-between">
+        <div>
+          <h2 className="text-6xl font-black">Launch & Support</h2>
+
+          <p className="mt-8 max-w-[520px] text-[2rem] leading-[1.4]">
+            We ensure a smooth rollout and stay by your side for ongoing
+            improvements and growth.
+          </p>
+        </div>
+
+        <Rocket size={220} strokeWidth={1.2} color="#d9d9d9" />
+      </div>
+    </div>
+  </div>
+</section>
+<Footer/>
+     
     </main>
   );
 };

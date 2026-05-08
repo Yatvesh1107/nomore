@@ -39,6 +39,8 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Navbar from "./components/Navbar"
 
+import Project from "./pages/Project";
+
 function App() {
   return (
     <BrowserRouter>
@@ -47,6 +49,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+
+        <Route path="/projects" element={<Project />} />
         
       </Routes>
     </BrowserRouter>
