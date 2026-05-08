@@ -37,7 +37,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
+import Contact from "./pages/Contact";
 
 import Project from "./pages/Project";
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/services" element={<Services />} />
 
         <Route path="/projects" element={<Project />} />
+        <Route path="/contact" element={<Contact />} />
         
       </Routes>
     </BrowserRouter>
