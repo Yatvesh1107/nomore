@@ -1,53 +1,85 @@
+import xIcon from "../assets/logos/x.svg";
+import instaIcon from "../assets/logos/instagram.svg";
+import linkedinIcon from "../assets/logos/linkedin.svg";
+import threadIcon from "../assets/logos/thread.svg";
+
 function Footer() {
   return (
-    <footer className="bg-black px-5 pb-5 pt-20 text-black">
-      <div className="rounded-[32px] bg-[#ececec] px-8 py-8 md:px-12 md:py-10">
-        
+    <footer className="bg-black px-3 pb-3 pt-24">
+
+      <div className="rounded-[18px] bg-[#f3f3f3] px-6 py-6 text-black md:px-10 md:py-8">
+
         {/* TOP */}
-        <div className="grid gap-10 border-b border-black/10 pb-10 md:grid-cols-3">
-          
+        <div className="grid grid-cols-1 gap-10 border-b border-black/10 pb-8 md:grid-cols-3">
+
+          {/* PHONE */}
           <div>
-            <p className="text-[1.7rem] font-medium text-black/50">
+
+            <p className="text-[20px] font-semibold text-black/45">
               Call Today :
             </p>
 
-            <h4 className="mt-2 text-[2rem] font-semibold">
+            <a
+              href="tel:+625237351221"
+              className="mt-2 inline-block text-[20px] font-semibold"
+            >
               +62 523 735 1221
-            </h4>
+            </a>
+
           </div>
 
-          <div className="text-center">
-            <p className="text-[1.7rem] font-medium text-black/50">
+          {/* EMAIL */}
+          <div className="md:text-center">
+
+            <p className="text-[20px] font-semibold text-black/45">
               Email :
             </p>
 
-            <h4 className="mt-2 text-[2rem] font-semibold">
+            <a
+              href="mailto:hello.nomore@gmail.com"
+              className="mt-2 inline-block text-[20px] font-semibold"
+            >
               hello.nomore@gmail.com
-            </h4>
+            </a>
+
           </div>
 
-          <div className="text-right">
-            <p className="text-[1.7rem] font-medium text-black/50">
+          {/* ADMIN */}
+          <div className="md:text-right">
+
+            <p className="text-[20px] font-semibold text-black/45">
               Admin :
             </p>
 
-            <h4 className="mt-2 text-[2rem] font-semibold">
+            <a
+              href="mailto:support-nomore@gmail.com"
+              className="mt-2 inline-block text-[20px] font-semibold"
+            >
               support-nomore@gmail.com
-            </h4>
+            </a>
+
           </div>
+
         </div>
 
         {/* CENTER */}
-        <div className="py-24 text-center">
-          <h1 className="text-[13vw] font-black uppercase leading-none tracking-[-0.08em] text-black">
-            LET&apos;S-TALK
-          </h1>
+        <div className="flex min-h-[480px] items-center justify-center border-b border-black/10">
+
+          <a
+            href="/contact"
+            className="text-center text-[14vw] font-black uppercase leading-none tracking-[-0.08em] transition-transform duration-500 hover:scale-[1.02]"
+          >
+            LET’S-TALK
+          </a>
+
         </div>
 
         {/* BOTTOM */}
-        <div className="flex flex-col items-center justify-between gap-8 border-t border-black/10 pt-8 md:flex-row">
-          
-          <div className="flex items-center gap-5 text-[1.2rem] font-medium">
+        <div className="flex flex-col items-center justify-between gap-8 pt-8 md:flex-row">
+
+          {/* LEFT */}
+          <div className="flex flex-wrap items-center gap-6 text-[18px] font-medium">
+
             <p>
               Designed by <span className="text-black/45">Vektora</span>
             </p>
@@ -55,27 +87,97 @@ function Footer() {
             <p>
               Powered by <span className="text-black/45">Webflow</span>
             </p>
+
           </div>
 
-          {/* SOCIAL */}
-          <div className="flex items-center gap-5 text-3xl">
-            <i className="ri-twitter-x-line"></i>
-            <i className="ri-instagram-line"></i>
-            <i className="ri-linkedin-box-fill"></i>
-            <i className="ri-threads-line"></i>
+          {/* SOCIALS */}
+          <div className="flex items-center gap-5">
+
+            {/* X */}
+            <a
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-opacity duration-300 hover:opacity-60"
+            >
+              <img
+                src={xIcon}
+                alt=""
+                className="h-7 w-7 object-contain"
+              />
+            </a>
+
+            {/* INSTAGRAM */}
+            <a
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-opacity duration-300 hover:opacity-60"
+            >
+              <img
+                src={instaIcon}
+                alt=""
+                className="h-7 w-7 object-contain"
+              />
+            </a>
+
+            {/* LINKEDIN */}
+            <a
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-opacity duration-300 hover:opacity-60"
+            >
+              <img
+                src={linkedinIcon}
+                alt=""
+                className="h-7 w-7 object-contain"
+              />
+            </a>
+
+            {/* THREAD */}
+            <a
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-opacity duration-300 hover:opacity-60"
+            >
+              <img
+                src={threadIcon}
+                alt=""
+                className="h-7 w-7 object-contain"
+              />
+            </a>
+
           </div>
 
-          {/* LINKS */}
-          <div className="flex items-center gap-6 text-[1.2rem] font-medium text-black/60">
-            <p>Style guide</p>
-            <p>Licenses</p>
-            <p>Changelog</p>
-            <p>404</p>
+          {/* RIGHT */}
+          <div className="flex flex-wrap items-center gap-6 text-[18px] text-black/55">
+
+            <a href="/">
+              Style guide
+            </a>
+
+            <a href="/">
+              Licenses
+            </a>
+
+            <a href="/">
+              Changelog
+            </a>
+
+            <a href="/">
+              404
+            </a>
+
           </div>
+
         </div>
+
       </div>
+
     </footer>
-  );``
+  );
 }
 
 export default Footer;

@@ -10,58 +10,62 @@ function Journey() {
   const leftRef = useRef(null);
 
   useGSAP(() => {
-   gsap.fromTo(
-  leftRef.current,
-  {
-    y: 250,
-    opacity: 0,
-  },
-  {
-    y: 0,
-    opacity: 1,
-    duration: 1.5,
-    ease: "power4.out",
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      start: "top 70%",
-      end: "top top",
-      scrub: 1,
-    },
-  }
-);
 
-ScrollTrigger.create({
-  trigger: sectionRef.current,
-  start: "top top",
-  end: "bottom bottom",
-  pin: leftRef.current,
-  pinSpacing: false,
-});
+  // TEXT COMES UP FROM BOTTOM
+  gsap.fromTo(
+    leftRef.current,
+    {
+      y: 300,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 85%",
+        end: "top 30%",
+        scrub: 1.5,
+      },
+    }
+  );
+
+  // THEN STICKS TO TOP
+  ScrollTrigger.create({
+    trigger: sectionRef.current,
+    start: "top top",
+    end: "bottom bottom",
+    pin: leftRef.current,
+    pinSpacing: false,
   });
+
+});
+
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[220vh] overflow-hidden bg-black text-white"
+      className="relative min-h-[320vh]overflow-hidden bg-black text-white"
     >
 
       {/* BACKGROUND IMAGE */}
       <img
         src="/images/girl.jpg"
         alt=""
-        className="absolute inset-0 h-full w-full object-cover object-center opacity-75"
+        className="absolute inset-0 h-full w-full object-cover object-center grayscale brightness-[0.85] contrast-[1.1] opacity-90"
       />
 
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/35" />
 
       {/* CONTENT */}
-      <div className="relative z-10 grid grid-cols-2 gap-20 px-8 py-24 md:px-16">
+      <div className="relative z-10 grid  grid-cols-[1fr_1.2fr] gap-20 px-8 py-24 md:px-16">
 
         {/* LEFT SIDE */}
         <div
           ref={leftRef}
-          className="flex h-screen flex-col justify-center"
+          className="flex h-screen flex-col justify-start pt-28"
         >
 
           <div className="mb-8 flex items-center gap-4">
@@ -85,7 +89,7 @@ ScrollTrigger.create({
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="flex flex-col gap-40 pt-20">
+        <div className="flex flex-col gap-56 pt-20">
 
           <div>
             <h3 className="text-[9vw] font-[900] leading-none">

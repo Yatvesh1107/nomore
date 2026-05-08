@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import AboutCarousel from "../components/AboutCarousel";
 import Journey from "../components/Journey";
 import Footer from "../components/Footer";
+import AboutTestimonial from "../components/AboutTestimonial";
 
 const AboutUs = () => {
   const titleRef = useRef(null);
@@ -41,7 +42,7 @@ const AboutUs = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 h-full w-full scale-[0.94] object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         >
           <source src="/videos/about-hero.mp4" type="video/mp4" />
         </video>
@@ -95,6 +96,7 @@ const AboutUs = () => {
 
       <Journey />
 
+      <AboutTestimonial/>
       <Footer/>
     </>
   );
