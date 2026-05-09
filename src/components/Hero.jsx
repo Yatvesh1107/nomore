@@ -20,7 +20,8 @@ function Hero() {
                 muted
                 loop
                 playsInline
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-[1080px] w-[1920px] object-cover"
+                // className="absolute inset-0 h-full w-full object-cover"
             >
                 <source src="/videos/hero.mp4" type="video/mp4" />
             </video>

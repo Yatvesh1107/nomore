@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer className="bg-black px-3 pb-3 pt-24">
 
-      <div className="rounded-[18px] bg-[#f3f3f3] px-6 py-6 text-black md:px-10 md:py-8">
+      <div className="rounded-[18px] bg-[#f3f3f3] px-6 top-[100%] py-6 text-black md:px-10 md:py-8">
 
         {/* TOP */}
         <div className="grid grid-cols-1 gap-10 border-b border-black/10 pb-8 md:grid-cols-3">
