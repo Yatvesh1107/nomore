@@ -234,24 +234,37 @@ const Services = () => {
   const sliderRef = useRef(null);
   const workflowRef = useRef(null);
 
- useEffect(() => {
+useEffect(() => {
   const slider = sliderRef.current;
   const workflow = workflowRef.current;
 
-  const totalMove = slider.scrollWidth - window.innerWidth + 40;
+  if (!slider || !workflow) return;
 
   const ctx = gsap.context(() => {
-    gsap.to(slider, {
-      x: -totalMove,
-      ease: "none",
-      scrollTrigger: {
-        trigger: workflow,
-        start: "top top",
-        end: () => `+=${totalMove}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        const totalMove = slider.scrollWidth - window.innerWidth + 40;
+
+        gsap.to(slider, {
+          x: -totalMove,
+          ease: "none",
+          scrollTrigger: {
+            trigger: workflow,
+            start: "top top",
+            end: () => `+=${totalMove}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      },
+
+      "(max-width: 767px)": function () {
+        gsap.set(slider, {
+          x: 0,
+          clearProps: "transform",
+        });
       },
     });
   }, workflow);
@@ -291,181 +304,240 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="relative bg-black px-6 py-20 md:px-10">
-        <div className="mb-10 flex items-center gap-3 text-xl">
-          <span className="h-5 w-5 rounded-full border-4 border-gray-500 bg-[#d9fbff]" />
-          <span>SERVICE</span>
+      <section className="relative bg-black px-5 py-16 md:px-10 md:py-20">
+  <div className="mb-10 flex items-center gap-3 text-base md:text-xl">
+    <span className="h-4 w-4 rounded-full border-4 border-gray-500 bg-[#d9fbff] md:h-5 md:w-5" />
+    <span>SERVICE</span>
+  </div>
+
+  {services.map((item, index) => (
+    <div
+      key={index}
+      onMouseEnter={() => setActiveImage(item.image)}
+      onMouseLeave={() => setActiveImage(null)}
+      onMouseMove={(e) =>
+        setPosition({
+          x: e.clientX,
+          y: e.clientY,
+        })
+      }
+      className="relative mb-6 flex cursor-pointer flex-col overflow-hidden rounded-[10px] bg-white px-4 py-6 text-black md:mb-8 md:min-h-[270px] md:flex-row md:items-center md:justify-between md:overflow-visible md:rounded-xl md:px-10 md:py-10"
+    >
+      <div>
+        <h2 className="text-[11vw] font-black leading-none tracking-[-0.06em] md:text-[5vw]">
+          {item.title}
+        </h2>
+
+        <div className="mt-6 flex flex-wrap gap-3 md:mt-8 md:max-w-[520px]">
+          {item.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-black px-4 py-1 text-sm md:px-5 md:text-lg"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
+      </div>
 
-        {services.map((item, index) => (
-          <div
-            key={index}
-            onMouseEnter={() => setActiveImage(item.image)}
-            onMouseLeave={() => setActiveImage(null)}
-            onMouseMove={(e) =>
-              setPosition({
-                x: e.clientX,
-                y: e.clientY,
-              })
-            }
-            className="relative mb-8 flex min-h-[270px] cursor-pointer items-center justify-between overflow-visible rounded-xl bg-white px-10 py-10 text-black"
-          >
-            <div>
-              <h2 className="text-[5vw] font-black leading-none tracking-[-0.06em]">
-                {item.title}
-              </h2>
+      <p className="mt-7 text-[16px] font-medium leading-tight md:mt-0 md:max-w-[420px] md:text-2xl">
+        {item.desc}
+      </p>
 
-              <div className="mt-8 flex max-w-[520px] flex-wrap gap-3">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-black px-5 py-1 text-lg"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+      <img
+        src={item.image}
+        alt={item.title}
+        className="mt-8 h-[210px] w-full rounded-[6px] object-cover md:hidden"
+      />
+    </div>
+  ))}
 
-            <p className="max-w-[420px] text-2xl font-medium leading-tight">
-              {item.desc}
-            </p>
-          </div>
-        ))}
-
-        {activeImage && (
-          <img
-            src={activeImage}
-            alt=""
-            className="pointer-events-none fixed z-[999] h-[330px] w-[330px] object-cover"
-            style={{
-              left: position.x - 165,
-              top: position.y - 165,
-            }}
-          />
-        )}
-      </section>
+  {activeImage && (
+    <img
+      src={activeImage}
+      alt=""
+      className="pointer-events-none fixed z-[999] hidden h-[330px] w-[330px] object-cover md:block"
+      style={{
+        left: position.x - 165,
+        top: position.y - 165,
+      }}
+    />
+  )}
+</section>
 
 
-<section ref={workflowRef} className="overflow-hidden bg-black py-0">
-  <div className="mb-10 px-10">
-    <p className="text-xl text-white">OUR WORKFLOW</p>
 
-    <h1 className="text-[8vw] font-black uppercase leading-none text-white">
+<section ref={workflowRef} className="overflow-hidden bg-black py-16 md:py-0">
+  <div className="mb-10 px-5 md:px-10">
+    <div className="mb-5 flex items-center gap-3">
+      <span className="h-4 w-4 rounded-full border-4 border-gray-500 bg-[#d9fbff]" />
+      <p className="text-base font-medium text-white md:text-xl">
+        OUR WORKFLOW
+      </p>
+    </div>
+
+    <h1 className="text-[13vw] font-black uppercase leading-none text-white md:text-[8vw]">
       WHAT <span className="text-[#d9fbff]">NEXT</span>
     </h1>
   </div>
 
   <div
     ref={sliderRef}
-    className="flex w-max items-start gap-16 pl-10 pr-[45vw]"
+    className="flex flex-col gap-6 px-5 md:w-max md:flex-row md:items-start md:gap-16 md:pl-10 md:pr-[45vw]"
   >
     {/* CARD 1 */}
-    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+    <div className="min-h-[420px] rounded-[28px] bg-[#efefef] p-6 text-black md:h-[470px] md:w-[950px] md:shrink-0 md:rounded-[32px] md:p-8">
       <div className="flex items-center gap-2">
-        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+        <span className="rounded-full bg-black px-5 py-3 text-base font-bold text-white md:px-7 md:text-3xl">
           STEP
         </span>
 
-        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+        <span className="grid h-[48px] w-[48px] place-items-center rounded-full bg-black text-base font-bold text-white md:h-[60px] md:w-[60px] md:text-3xl">
           01
         </span>
       </div>
 
-      <div className="mt-10 flex items-end justify-between">
-        <div>
-          <h2 className="text-6xl  font-black">Call with Us</h2>
+      <div className="mt-8 flex h-[300px] flex-col justify-between md:mt-10 md:h-auto md:flex-row md:items-end">
+        <Phone
+          size={95}
+          strokeWidth={1.2}
+          color="#d9d9d9"
+          className="self-end md:hidden"
+        />
 
-          <p className="mt-4 max-w-[500px] text-[2rem] leading-[1.4]">
+        <div>
+          <h2 className="text-2xl font-black md:text-6xl">
+            Call with Us
+          </h2>
+
+          <p className="mt-6 max-w-[300px] text-[22px] leading-[1.35] md:mt-4 md:max-w-[500px] md:text-[2rem] md:leading-[1.4]">
             Let’s discuss your vision, goals, and challenges to understand what
             success looks like for you.
           </p>
         </div>
 
-        {/* <div className="text-[14rem] text-[#dddddd]">☎</div> */}
-        <Phone size={220} strokeWidth={1.2} color="#d9d9d9" />
+        <Phone
+          size={220}
+          strokeWidth={1.2}
+          color="#d9d9d9"
+          className="hidden md:block"
+        />
       </div>
     </div>
 
     {/* CARD 2 */}
-    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+    <div className="min-h-[420px] rounded-[28px] bg-[#efefef] p-6 text-black md:h-[470px] md:w-[950px] md:shrink-0 md:rounded-[32px] md:p-8">
       <div className="flex items-center gap-2">
-        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+        <span className="rounded-full bg-black px-5 py-3 text-base font-bold text-white md:px-7 md:text-3xl">
           STEP
         </span>
 
-        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+        <span className="grid h-[48px] w-[48px] place-items-center rounded-full bg-black text-base font-bold text-white md:h-[60px] md:w-[60px] md:text-3xl">
           02
         </span>
       </div>
 
-      <div className="-mt-8 flex items-end justify-between">
-        <div>
-          <h2 className="text-6xl font-black">Strategy & Concept</h2>
+      <div className="mt-8 flex h-[300px] flex-col justify-between md:-mt-8 md:h-auto md:flex-row md:items-end">
+        <div className="self-end text-[5rem] text-[#dddddd] md:hidden">
+          ⌲
+        </div>
 
-          <p className="mt-8 max-w-[520px] text-[2rem] leading-[1.4]">
+        <div>
+          <h2 className="text-2xl font-black md:text-6xl">
+            Strategy & Concept
+          </h2>
+
+          <p className="mt-6 max-w-[300px] text-[22px] leading-[1.35] md:mt-8 md:max-w-[520px] md:text-[2rem] md:leading-[1.4]">
             We shape big ideas into bold concepts that align with your goals and
             audience.
           </p>
         </div>
 
-        <div className="text-[14rem] text-[#dddddd]">⌲</div>
+        <div className="hidden text-[14rem] text-[#dddddd] md:block">
+          ⌲
+        </div>
       </div>
     </div>
 
     {/* CARD 3 */}
-    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+    <div className="min-h-[420px] rounded-[28px] bg-[#efefef] p-6 text-black md:h-[470px] md:w-[950px] md:shrink-0 md:rounded-[32px] md:p-8">
       <div className="flex items-center gap-2">
-        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+        <span className="rounded-full bg-black px-5 py-3 text-base font-bold text-white md:px-7 md:text-3xl">
           STEP
         </span>
 
-        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+        <span className="grid h-[48px] w-[48px] place-items-center rounded-full bg-black text-base font-bold text-white md:h-[60px] md:w-[60px] md:text-3xl">
           03
         </span>
       </div>
 
-      <div className="mt-0 flex items-end justify-between">
-        <div>
-          <h2 className="text-6xl font-black">Design & Development</h2>
+      <div className="mt-8 flex h-[300px] flex-col justify-between md:mt-0 md:h-auto md:flex-row md:items-end">
+        <div className="self-end text-[5rem] text-[#dddddd] md:hidden">
+          {"{...}"}
+        </div>
 
-          <p className="mt-8 max-w-[520px] text-[2rem] leading-[1.4]">
-            Our team transforms ideas into reality through thoughtful design
-            and seamless execution.
+        <div>
+          <h2 className="text-2xl font-black md:text-6xl">
+            Design & Development
+          </h2>
+
+          <p className="mt-6 max-w-[300px] text-[22px] leading-[1.35] md:mt-8 md:max-w-[520px] md:text-[2rem] md:leading-[1.4]">
+            Our team transforms ideas into reality through thoughtful design and
+            seamless execution.
           </p>
         </div>
 
-        <div className="text-[14rem] text-[#dddddd]">{`{...}`}</div>
+        <div className="hidden text-[14rem] text-[#dddddd] md:block">
+          {"{...}"}
+        </div>
       </div>
     </div>
 
     {/* CARD 4 */}
-    <div className="mt-0 h-[470px] w-[950px] shrink-0 rounded-[32px] bg-[#efefef] p-8 text-black">
+    <div className="min-h-[420px] rounded-[28px] bg-[#efefef] p-6 text-black md:h-[470px] md:w-[950px] md:shrink-0 md:rounded-[32px] md:p-8">
       <div className="flex items-center gap-2">
-        <span className="rounded-full bg-black px-7 py-3 text-3xl font-bold text-white">
+        <span className="rounded-full bg-black px-5 py-3 text-base font-bold text-white md:px-7 md:text-3xl">
           STEP
         </span>
 
-        <span className="grid h-[60px] w-[60px] place-items-center rounded-full bg-black text-3xl font-bold text-white">
+        <span className="grid h-[48px] w-[48px] place-items-center rounded-full bg-black text-base font-bold text-white md:h-[60px] md:w-[60px] md:text-3xl">
           04
         </span>
       </div>
 
-      <div className="mt-8 flex items-end justify-between">
-        <div>
-          <h2 className="text-6xl font-black">Launch & Support</h2>
+      <div className="mt-8 flex h-[300px] flex-col justify-between md:h-auto md:flex-row md:items-end">
+        <Rocket
+          size={95}
+          strokeWidth={1.2}
+          color="#d9d9d9"
+          className="self-end md:hidden"
+        />
 
-          <p className="mt-8 max-w-[520px] text-[2rem] leading-[1.4]">
+        <div>
+          <h2 className="text-2xl font-black md:text-6xl">
+            Launch & Support
+          </h2>
+
+          <p className="mt-6 max-w-[300px] text-[22px] leading-[1.35] md:mt-8 md:max-w-[520px] md:text-[2rem] md:leading-[1.4]">
             We ensure a smooth rollout and stay by your side for ongoing
             improvements and growth.
           </p>
         </div>
 
-        <Rocket size={220} strokeWidth={1.2} color="#d9d9d9" />
+        <Rocket
+          size={220}
+          strokeWidth={1.2}
+          color="#d9d9d9"
+          className="hidden md:block"
+        />
       </div>
     </div>
   </div>
 </section>
+
+
+
+
 <AboutTestimonial/>
 <Footer/>
      

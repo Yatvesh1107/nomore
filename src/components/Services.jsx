@@ -32,69 +32,69 @@ function Services() {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   };
 }, []);
-//   useEffect(() => {
-//     gsap.utils.toArray(".service-card").forEach((card) => {
-//       gsap.from(card, {
-//         y: 120,
-//         opacity: 0,
-//         duration: 1,
-//         ease: "power3.out",
-//         scrollTrigger: {
-//           trigger: card,
-//           start: "top 85%",
-//         },
-//       });
-//     });
-//   }, []);
+
 
   return (
     <section className="mb-8 bg-black px-4 py-10">
-      <div className="mb-10">
-        <div className="mb-6 flex items-center gap-3">
-          <div className="h-4 w-4 rounded-full bg-[#d9fbff]" />
-          <p className="text-[22px] font-medium uppercase text-white">
-            Service
-          </p>
+   <div className="relative overflow-x-auto px-4 pb-6 scrollbar-hide md:overflow-visible md:px-0">
+  <div className="flex gap-5 md:block">
+    {services.map((service, index) => (
+      <div
+        key={index}
+        className="
+          service-card
+          flex
+          min-w-[82vw]
+          max-w-[82vw]
+          flex-shrink-0
+          flex-col
+          rounded-[28px]
+          bg-[#ececec]
+          px-6
+          py-7
+          text-black
+          shadow-[0_20px_60px_rgba(0,0,0,0.35)]
+
+          md:sticky
+          md:top-[80px]
+          md:mb-10
+          md:min-h-[300px]
+          md:max-w-none
+          md:w-full
+          md:flex-row
+          md:items-center
+          md:justify-between
+          md:rounded-[40px]
+          md:px-10
+          md:py-12
+        "
+        style={{
+          zIndex: services.length - index,
+        }}
+      >
+        <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10">
+          <span className="text-2xl font-bold text-[#ff5c39] md:text-5xl">
+            {service.number}
+          </span>
+
+          <h3 className="text-[10vw] font-black leading-[0.9] tracking-[-0.04em] text-black md:text-[5vw]">
+            {service.title}
+          </h3>
         </div>
 
-        <h2 className="text-[7vw] font-black uppercase leading-[0.85] tracking-[-0.06em] text-white">
-          FULL-SPECTRUM
-          <br />
-          <span className="text-[#d9fbff]">CREATIVE</span>
-        </h2>
+        <img
+          src={service.image}
+          alt={service.title}
+          className="my-6 h-[190px] w-full rounded-[14px] object-cover shadow-2xl md:my-0 md:h-[220px] md:w-[320px]"
+        />
+
+        <p className="max-w-full text-[16px] leading-[1.25] text-black md:max-w-[360px] md:text-[28px]">
+          {service.desc}
+        </p>
       </div>
-
-      <div className="relative">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="service-card sticky top-[80px] mb-10 flex min-h-[300px] items-center justify-between rounded-[40px] bg-[#ececec] px-10 py-12"
-            style={{
-              zIndex: services.length - index,
-            }}
-          >
-            <div className="flex items-center gap-10">
-              <span className="text-5xl font-bold text-[#ff5c39]">
-                {service.number}
-              </span>
-
-              <h3 className="text-[5vw] font-black leading-none text-black">
-                {service.title}
-              </h3>
-            </div>
-
-            <img
-              src={service.image}
-              alt={service.title}
-              className="h-[220px] w-[320px] object-cover shadow-2xl"
-            />
-
-            <p className="max-w-[360px] text-[28px] leading-tight text-black">
-              {service.desc}
-            </p>
-          </div>
-        ))}
-      </div>
+    ))}
+  </div>
+</div>
     </section>
   );
 }

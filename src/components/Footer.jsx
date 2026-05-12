@@ -5,9 +5,9 @@ import threadIcon from "../assets/logos/thread.svg";
 
 function Footer() {
   return (
-    <footer className="bg-black px-3 pb-3 pt-24">
+    <footer className="bg-black px-3 pb-3 pt-24 md:min-h-screen">
+  <div className="flex min-h-[calc(100vh-108px)] flex-col rounded-[18px] bg-[#f3f3f3] px-6 py-6 text-black md:px-10 md:py-8">
 
-      <div className="rounded-[18px] bg-[#f3f3f3] px-6 top-[100%] py-6 text-black md:px-10 md:py-8">
 
         {/* TOP */}
         <div className="grid grid-cols-1 gap-10 border-b border-black/10 pb-8 md:grid-cols-3">
@@ -63,7 +63,7 @@ function Footer() {
         </div>
 
         {/* CENTER */}
-        <div className="flex min-h-[480px] items-center justify-center border-b border-black/10">
+       <div className="flex flex-1 top-40px items-center justify-center border-b border-black/10">
 
           <a
             href="/contact"
